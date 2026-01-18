@@ -57,6 +57,7 @@ export default function ChatUserDialog({
           params["id"] as string,
           JSON.stringify(data?.groupUser)
         );
+        setState({ name: "", passcode: "" });
         setChatUser(data?.groupUser);
       } catch (error) {
         toast.error("Something went wrong.please try again!");
