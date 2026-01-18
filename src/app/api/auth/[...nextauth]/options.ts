@@ -38,17 +38,13 @@ export const authOptions: AuthOptions = {
           image: user?.image,
         };
         const { data } = await axios.post(LOGIN_URL, payload);
-       console.log("Login response data:", data);
-        user.id = data?.user?.id?.toString();
-        user.token = data?.token;
+         user.id = data?.user?.id?.toString();
+         user.token = data?.token;
+
         return true;
       } catch (error) {
-        if (error instanceof AxiosError) {
-          return redirect(`/auth/error?message=${error.message}`);
-        }
-        return redirect(
-          `/auth/error?message=Something went wrong.please try again!`
-        );
+          console.error("OAuth backend login failed:", error);
+            return false;
       }
     },
 
